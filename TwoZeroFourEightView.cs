@@ -10,11 +10,13 @@ using System.Windows.Forms;
 
 namespace twozerofoureight
 {
+    
     public partial class TwoZeroFourEightView : Form, View
     {
         Model model;
         Controller controller;
-       
+
+
         public TwoZeroFourEightView()
         {
             InitializeComponent();
@@ -28,7 +30,12 @@ namespace twozerofoureight
         public void Notify(Model m)
         {
             UpdateBoard(((TwoZeroFourEightModel) m).GetBoard());
+            UpdateScore(((TwoZeroFourEightModel)m).GetScore());
+            UpdateGameOver(((TwoZeroFourEightModel)m).GetBoard());
         }
+
+
+
 
         private void UpdateTile(Label l, int i)
         {
@@ -38,16 +45,17 @@ namespace twozerofoureight
             } else {
                 l.Text = "";
             }
+
             switch (i)
             {
                 case 0:
                     l.BackColor = Color.Gray;
                     break;
                 case 2:
-                    l.BackColor = Color.DarkGray;
+                    l.BackColor = Color.Orange;
                     break;
                 case 4:
-                    l.BackColor = Color.Orange;
+                    l.BackColor = Color.DarkGray;
                     break;
                 case 8:
                     l.BackColor = Color.Red;
@@ -56,6 +64,53 @@ namespace twozerofoureight
                     l.BackColor = Color.Green;
                     break;
             }
+        }
+        private void UpdateScore(int result)
+        {
+            UpdateTile(Score,result);
+
+        }
+        private void UpdateGameOver(int[,] Board)
+        {
+            bool a = true, b = true;
+            for (int i = 0; i < 4; i++)
+            {
+                for (int j = 0; j < 4; j++)
+                {
+                    if (Board[i, j] == 0)
+                    {
+                        a = true;
+                        break;
+                    }
+                    else a = false;
+                }
+                if (a)
+                {
+                    label2.Text = " ";
+                    break;
+                }
+                else if (i == 3)
+                {
+                    for (int k = 0; k < 3; k++)
+                    {
+                        for (int q = 0; q < 3; q++)
+                        {
+                            if (Board[k, q] == Board[k, q + 1] || Board[k, q] == Board[k + 1, q])
+                            {
+                                b = true;
+                                break;
+                            }
+                            else b = false;
+                        }
+                        if (Board[k, 3] == Board[k + 1, 3]) b = true;
+                        if (b) break;
+                    }
+                    if (b) label2.Text = "Full";
+                    else label2.Text = "over";
+                }
+            }
+
+
         }
         private void UpdateBoard(int[,] board)
         {
@@ -75,6 +130,7 @@ namespace twozerofoureight
             UpdateTile(lbl31,board[3, 1]);
             UpdateTile(lbl32,board[3, 2]);
             UpdateTile(lbl33,board[3, 3]);
+            
         }
 
         private void btnLeft_Click(object sender, EventArgs e)
@@ -96,6 +152,63 @@ namespace twozerofoureight
         {
             controller.ActionPerformed(TwoZeroFourEightController.DOWN);
         }
+        
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            switch (keyData)
+            {
+                case Keys.Up:
+                    controller.ActionPerformed(TwoZeroFourEightController.UP);
+                    return true;
+                case Keys.Left:
+                    controller.ActionPerformed(TwoZeroFourEightController.LEFT);
+                    return true;
+                case Keys.Right:
+                    controller.ActionPerformed(TwoZeroFourEightController.RIGHT);
+                    return true;
+                case Keys.Down:
+                    controller.ActionPerformed(TwoZeroFourEightController.DOWN);
+                    return true;
+                // ...
+                default:
+                    return base.ProcessCmdKey(ref msg, keyData);
+            }
 
+           
+        }
+
+        TwoZeroFourEightModel prr  =  new TwoZeroFourEightModel();
+      
+
+
+
+
+
+
+        // not use
+        private void saveFileDialog1_FileOk(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void btnUp_KeyUp(object sender, KeyEventArgs e)
+        {
+            controller.ActionPerformed(TwoZeroFourEightController.UP);
+        }
+
+        private void lbl13_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Score_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lbl33_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

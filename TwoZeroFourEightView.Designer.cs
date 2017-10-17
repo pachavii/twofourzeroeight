@@ -44,10 +44,9 @@
             this.lbl32 = new System.Windows.Forms.Label();
             this.lbl31 = new System.Windows.Forms.Label();
             this.lbl30 = new System.Windows.Forms.Label();
-            this.btnLeft = new System.Windows.Forms.Button();
-            this.btnUp = new System.Windows.Forms.Button();
-            this.btnRight = new System.Windows.Forms.Button();
-            this.btnDown = new System.Windows.Forms.Button();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.Score = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lbl00
@@ -66,7 +65,7 @@
             this.lbl01.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lbl01.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl01.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.lbl01.Location = new System.Drawing.Point(76, 9);
+            this.lbl01.Location = new System.Drawing.Point(82, 9);
             this.lbl01.Name = "lbl01";
             this.lbl01.Size = new System.Drawing.Size(51, 51);
             this.lbl01.TabIndex = 1;
@@ -88,7 +87,7 @@
             this.lbl03.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lbl03.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl03.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.lbl03.Location = new System.Drawing.Point(209, 9);
+            this.lbl03.Location = new System.Drawing.Point(209, 11);
             this.lbl03.Name = "lbl03";
             this.lbl03.Size = new System.Drawing.Size(51, 51);
             this.lbl03.TabIndex = 3;
@@ -104,6 +103,7 @@
             this.lbl13.Size = new System.Drawing.Size(51, 51);
             this.lbl13.TabIndex = 7;
             this.lbl13.Text = "0";
+            this.lbl13.Click += new System.EventHandler(this.lbl13_Click);
             // 
             // lbl12
             // 
@@ -121,7 +121,7 @@
             this.lbl11.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lbl11.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl11.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.lbl11.Location = new System.Drawing.Point(76, 74);
+            this.lbl11.Location = new System.Drawing.Point(82, 74);
             this.lbl11.Name = "lbl11";
             this.lbl11.Size = new System.Drawing.Size(51, 51);
             this.lbl11.TabIndex = 5;
@@ -192,6 +192,7 @@
             this.lbl33.Size = new System.Drawing.Size(51, 51);
             this.lbl33.TabIndex = 15;
             this.lbl33.Text = "0";
+            this.lbl33.Click += new System.EventHandler(this.lbl33_Click);
             // 
             // lbl32
             // 
@@ -226,55 +227,40 @@
             this.lbl30.TabIndex = 12;
             this.lbl30.Text = "0";
             // 
-            // btnLeft
+            // saveFileDialog1
             // 
-            this.btnLeft.Location = new System.Drawing.Point(85, 336);
-            this.btnLeft.Name = "btnLeft";
-            this.btnLeft.Size = new System.Drawing.Size(53, 45);
-            this.btnLeft.TabIndex = 16;
-            this.btnLeft.Text = "<";
-            this.btnLeft.UseVisualStyleBackColor = true;
-            this.btnLeft.Click += new System.EventHandler(this.btnLeft_Click);
+            this.saveFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.saveFileDialog1_FileOk);
             // 
-            // btnUp
+            // Score
             // 
-            this.btnUp.Location = new System.Drawing.Point(140, 307);
-            this.btnUp.Name = "btnUp";
-            this.btnUp.Size = new System.Drawing.Size(53, 45);
-            this.btnUp.TabIndex = 17;
-            this.btnUp.Text = "^";
-            this.btnUp.UseVisualStyleBackColor = true;
-            this.btnUp.Click += new System.EventHandler(this.btnUp_Click);
+            this.Score.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Score.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Score.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.Score.Location = new System.Drawing.Point(19, 267);
+            this.Score.Name = "Score";
+            this.Score.Size = new System.Drawing.Size(114, 54);
+            this.Score.TabIndex = 20;
+            this.Score.Text = "0";
+            this.Score.Click += new System.EventHandler(this.Score_Click);
             // 
-            // btnRight
+            // label2
             // 
-            this.btnRight.Location = new System.Drawing.Point(195, 336);
-            this.btnRight.Name = "btnRight";
-            this.btnRight.Size = new System.Drawing.Size(53, 45);
-            this.btnRight.TabIndex = 18;
-            this.btnRight.Text = ">";
-            this.btnRight.UseVisualStyleBackColor = true;
-            this.btnRight.Click += new System.EventHandler(this.btnRight_Click);
+            this.label2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label2.Location = new System.Drawing.Point(142, 267);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(118, 54);
+            this.label2.TabIndex = 21;
+            this.label2.Text = "0";
             // 
-            // btnDown
-            // 
-            this.btnDown.Location = new System.Drawing.Point(140, 371);
-            this.btnDown.Name = "btnDown";
-            this.btnDown.Size = new System.Drawing.Size(53, 45);
-            this.btnDown.TabIndex = 19;
-            this.btnDown.Text = "v";
-            this.btnDown.UseVisualStyleBackColor = true;
-            this.btnDown.Click += new System.EventHandler(this.btnDown_Click);
-            // 
-            // Form1
+            // TwoZeroFourEightView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(344, 428);
-            this.Controls.Add(this.btnDown);
-            this.Controls.Add(this.btnRight);
-            this.Controls.Add(this.btnUp);
-            this.Controls.Add(this.btnLeft);
+            this.ClientSize = new System.Drawing.Size(281, 354);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.Score);
             this.Controls.Add(this.lbl33);
             this.Controls.Add(this.lbl32);
             this.Controls.Add(this.lbl31);
@@ -291,7 +277,7 @@
             this.Controls.Add(this.lbl02);
             this.Controls.Add(this.lbl01);
             this.Controls.Add(this.lbl00);
-            this.Name = "Form1";
+            this.Name = "TwoZeroFourEightView";
             this.Text = "Form1";
             this.ResumeLayout(false);
 
@@ -315,10 +301,9 @@
         private System.Windows.Forms.Label lbl32;
         private System.Windows.Forms.Label lbl31;
         private System.Windows.Forms.Label lbl30;
-        private System.Windows.Forms.Button btnLeft;
-        private System.Windows.Forms.Button btnUp;
-        private System.Windows.Forms.Button btnRight;
-        private System.Windows.Forms.Button btnDown;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.Label Score;
+        private System.Windows.Forms.Label label2;
     }
 }
 

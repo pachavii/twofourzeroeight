@@ -6,17 +6,21 @@ using System.Threading.Tasks;
 
 namespace twozerofoureight
 {
+   
+
     class Controller
     {
         protected ArrayList mList;
 
         public Controller()
         {
+            
             mList = new ArrayList();
         }
 
         public void AddModel(Model m)
         {
+           
             mList.Add(m);
         }
 
